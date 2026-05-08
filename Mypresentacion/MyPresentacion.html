@@ -1,0 +1,1455 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Presentación</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #070d1a;
+        --bg2: #0f1b33;
+        --card: rgba(13, 23, 42, 0.75);
+        --accent: #38bdf8;
+        --text: #e2e8f0;
+        --muted: #a8b4c7;
+        --border: rgba(148, 163, 184, 0.3);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: radial-gradient(circle at top left, #1e293b, var(--bg) 40%, #04070f 100%);
+        color: var(--text);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 92px 0 48px;
+      }
+
+      .top-hover-zone {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
+        z-index: 1099;
+      }
+
+      .floating-nav {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        z-index: 1100;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(2, 6, 23, 0.75);
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .floating-nav.nav-hidden {
+        transform: translateY(-140%);
+        opacity: 0;
+      }
+
+      .navbar .nav-link,
+      .navbar .navbar-brand {
+        color: #e2e8f0 !important;
+      }
+
+      .navbar .nav-link:hover {
+        color: var(--accent) !important;
+      }
+
+      main {
+        animation: fade-in 0.6s ease;
+      }
+
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      table[width="80%"] {
+        max-width: 1180px;
+        width: 92%;
+        margin: 0 auto;
+      }
+
+      td {
+        padding: 12px;
+      }
+
+      .content-card {
+        background: var(--card);
+        border: 1px solid var(--border) !important;
+        border-radius: 14px;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .carousel-shell {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      .carousel-cover {
+        height: 450px;
+        object-fit: cover;
+      }
+
+      .mv-col {
+        padding: 16px;
+        text-align: left;
+      }
+
+      .links {
+        text-align: center;
+      }
+
+      .song-title {
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 8px;
+      }
+
+      .song-title h4 {
+        margin: 0;
+      }
+
+      .info-dot {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        flex: 0 0 18px;
+        border: 1px solid rgba(56, 189, 248, 0.7);
+        border-radius: 50%;
+        background: rgba(56, 189, 248, 0.2);
+        color: #e0f2fe;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        line-height: 1;
+        padding: 0;
+        cursor: pointer;
+        margin-top: 2px;
+      }
+
+      .info-dot:hover {
+        background: rgba(56, 189, 248, 0.35);
+      }
+
+      .music-popover {
+        --bs-popover-bg: rgba(15, 23, 42, 0.95);
+        --bs-popover-border-color: rgba(56, 189, 248, 0.45);
+        --bs-popover-header-bg: rgba(30, 41, 59, 0.98);
+        --bs-popover-header-color: #e2e8f0;
+        --bs-popover-body-color: #cbd5e1;
+        --bs-popover-max-width: 310px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(8px);
+      }
+
+      h1 {
+        color: #f8fafc;
+        letter-spacing: 0.5px;
+        margin: 8px 0 16px;
+        text-shadow: 0 6px 20px rgba(14, 165, 233, 0.25);
+      }
+
+      h2,
+      h3,
+      h4 {
+        color: #f8fafc;
+      }
+
+      p {
+        margin: 6px 0;
+        color: var(--muted);
+      }
+
+      img,
+      video,
+      iframe {
+        border-radius: 12px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      #carouselExampleDark {
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      }
+
+      iframe {
+        width: 100%;
+        max-width: 560px;
+        border: 0;
+      }
+
+      textarea {
+        width: 100%;
+        max-width: 560px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        background: rgba(15, 23, 42, 0.85);
+        color: #e5e7eb;
+        font-size: 0.9rem;
+      }
+
+      ul {
+        margin: 8px 0 0;
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 6px;
+        color: var(--muted);
+      }
+
+      .section-heading {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+
+      .section-heading::after {
+        content: "";
+        display: block;
+        width: 60%;
+        height: 2px;
+        margin-top: 6px;
+        background: linear-gradient(90deg, var(--accent), transparent);
+      }
+
+      footer {
+        margin-top: 24px;
+        border-top: 1px solid var(--border);
+        background: rgba(2, 6, 23, 0.5);
+        padding: 18px 0;
+      }
+
+      footer a {
+        color: #93c5fd;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: #e0f2fe;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="top-hover-zone" class="top-hover-zone"></div>
+    <header>
+      <nav id="mainNavbar" class="navbar navbar-expand-lg floating-nav" data-bs-theme="dark">
+        <div class="container-fluid px-3">
+          <a class="navbar-brand fw-semibold" href="#inicio">My Presentation</a>
+          <button
+            class="navbar-toggler border-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarLinks"
+            aria-controls="navbarLinks"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarLinks">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#carrusel">Carrusel</a></li>
+              <li class="nav-item"><a class="nav-link" href="#datos-personales">Datos</a></li>
+              <li class="nav-item"><a class="nav-link" href="#pasatiempos">Pasatiempos</a></li>
+              <li class="nav-item"><a class="nav-link" href="#canciones">Canciones</a></li>
+              <li class="nav-item"><a class="nav-link" href="#juegos">Juegos</a></li>
+              <li class="nav-item"><a class="nav-link" href="#mision-vision">Mision-Vision</a></li>
+              <li class="nav-item"><a class="nav-link" href="#tareas">Tareas</a></li>
+              <li class="nav-item"><a class="nav-link" href="#redes">Redes</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="inicio">
+      <div class="text-center">
+        <table width="80%" border="0" cellpadding="10" cellspacing="0">
+        <tr>
+          <td class="text-center">
+            <h1>My_Presentation - Jose Fernando</h1>
+          </td>
+        </tr>
+        <!-- SECCIÓN DEL CARRUSEL -->
+        <tr>
+          <td class="content-card">
+            <!-- Carrusel de Bootstrap -->
+            <tr>
+              <td class="text-center">
+                <h2 id="carrusel" class="section-heading">Carusel de mis imagenes favoritas</h2>
+              </td>
+            </tr>
+            <tr>
+              <td class="content-card">
+                <div
+                  id="carouselExampleDark"
+                  class="carousel carousel-dark slide carousel-shell"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-indicators">
+                    <button
+                      type="button"
+                      data-bs-target="#carouselExampleDark"
+                      data-bs-slide-to="0"
+                      class="active"
+                      aria-current="true"
+                      aria-label="Slide 1"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#carouselExampleDark"
+                      data-bs-slide-to="1"
+                      aria-label="Slide 2"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#carouselExampleDark"
+                      data-bs-slide-to="2"
+                      aria-label="Slide 3"
+                    ></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                      <img
+                        src="https://i.pinimg.com/474x/ca/2b/92/ca2b92b6ea4e7218defdbe2fdd7825bb.jpg"
+                        class="d-block w-100 carousel-cover"
+                        alt="Imagen 1"
+                      />
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Primera imagen</h5>
+                        <p>Una de mis favoritas para abrir el carrusel.</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                      <img
+                        src="https://depor.com/resizer/ErNEZ8ZK1cA-1p6yd7lcoo5zz4s=/1200x675/smart/filters:format(jpeg):quality(90)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/EA7OVZGLJ5HVTG7GCA6JLJAIKY.jpg"
+                        class="d-block w-100 carousel-cover"
+                        alt="Imagen 2"
+                      />
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Segunda imagen</h5>
+                        <p>Otra foto que me gusta mucho.</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4hW1qXAr8pg0Fe5RU45HFlgVidfGElm61-g&s"
+                        class="d-block w-100 carousel-cover"
+                        alt="Imagen 3"
+                      />
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Tercera imagen</h5>
+                        <p>Un cierre con otra imagen favorita.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExampleDark"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Anterior</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExampleDark"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Siguiente</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="content-card">
+                <table width="100%">
+                  <tr>
+                    <td width="30%" class="text-center">
+                      <img
+                        src="images/MyPRESENT.jpeg"
+                        alt="Mi Foto"
+                        width="200"
+                        height="280"
+                      />
+                    </td>
+                    <td width="70%">
+                      <h3 id="datos-personales" class="section-heading">Datos Personales</h3>
+                      <p>Nombre: Jose Fernando Mollo Ampuero</p>
+                      <p>Edad: 21 años</p>
+                      <p>
+                        Dirección: Soy de La Paz, Bolivia, vivo por villa fatima
+                      </p>
+                      <p>Teléfono: 62537859</p>
+                      <p>Email: jose.mollo.62353@usalesiana.edu.bo</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="content-card">
+                <table width="100%">
+                  <tr>
+                    <td width="50%" class="text-center">
+                      <img
+                        src="https://img.freepik.com/fotos-premium/joystick-auriculares-teclado-computadora-mesa-negra_93675-157518.jpg"
+                        alt="Imagen de Pasatiempos"
+                        width="300"
+                      />
+                    </td>
+                    <td width="50%">
+                      <h3 id="pasatiempos" class="section-heading">Mis Pasatiempos</h3>
+                      <ul>
+                        <li>Me gusta Jugar juegos ARPG</li>
+                        <li>Me gusta escuchar musica y leer manga</li>
+                        <li>Me gusta dibujar y ver nuevas tecnologias</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <h2 id="canciones" class="section-heading">Mis Canciones Favoritas</h2>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table width="100%">
+                  <tr>
+                    <td width="50%" class="content-card" valign="top">
+                      <div class="song-title">
+                        <h4>Imagine Dragons - Sharks (Official Music Video)</h4>
+                        <button
+                          type="button"
+                          class="info-dot"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="hover"
+                          data-bs-placement="top"
+                          data-bs-html="true"
+                          title="Por que me gusta y cuando la escucho"
+                          data-bs-content="<strong>Me gusta:</strong> Me motiva por su energia y por la letra de superacion en ambientes complicados.<br><strong>Cuando la escucho:</strong> Normalmente en la manana antes de clases o cuando empiezo una sesion larga de programacion."
+                          aria-label="Informacion de esta cancion"
+                        >
+                          i
+                        </button>
+                      </div>
+                      <video width="560" height="315" controls>
+                        <source
+                          src="videos/Imagine Dragons - Sharks (Official Music Video)(360P).mp4"
+                          type="video/mp4"
+                        />
+                        Tu navegador no soporta el video.
+                      </video>
+                      <textarea rows="15" cols="50" readonly>
+Trouble
+Blood is in the rocky waters
+Hide away your sons and daughters
+Eat you alive
+ 
+Levels better put your head on swivels
+Dancing with the very devil
+Butter to knife
+ 
+You think you're better than them, better than them
+You think they're really your friends, really your friends
+But when it comes to the end, to the end
+You're just the same as them, same as them
+ 
+So let it go, let it go 
+That's the way that it goes
+First you're in then you're out, everybody knows
+You're hot then you're cold, you're a light in the dark
+Just you wait and you'll see that you're swimming with sharks
+ 
+He's coming to get you, he's coming to get you, get you
+ 
+Bubbles, drowning you're seeing doubles
+Don't you let them see your struggles hiding your tears
+Crisis, take advantage of your niceness
+Cut you up in even slices
+Prey on your fears
+ 
+You think you're better than them, better than them
+You think they're really your friends, really your friends
+But when it comes to the end, to the end
+You're just the same as them, same as them
+ 
+So let it go, let it go 
+That's the way that it goes
+First you're in then you're out, everybody knows
+You're hot then you're cold, you're a light in the dark
+Just you wait and you'll see that you're swimming with sharks
+ 
+My blood is pumping, coming to get you, don't take it from me
+My blood is pumping, coming to get you, don't take it from me
+My blood is pumping, coming to get you, don't take it from me
+My blood is pumping, coming to get you, don't take it from me
+ 
+Every time my heart is beating I can feel the recipe
+I wonder if my day is coming, blame it on the entropy
+My blood is pumping I can see the end is right in front of me
+Don't take it from me
+I could be everything....everything
+ 
+(don't take it from me)
+(my blood is pumping)
+(don't take it from me)
+(I could be everything....everything)
+ 
+So let it go, let it go 
+That's the way that it goes
+First you're in then you're out, everybody knows
+You're hot then you're cold, you're a light in the dark
+Just you wait and you'll see that you're swimming with sharks
+ 
+My blood is pumping, coming to get you, don't take it from me
+My blood is pumping, coming to get you, don't take it from me
+My blood is pumping, coming to get you, don't take it from me
+ 
+My blood is pumping, coming to get you, don't take it from me
+                                </textarea
+                      >
+                    </td>
+                    <td width="50%" class="content-card" valign="top">
+                      <div class="song-title">
+                        <h4>
+                          ＜ノラガミARAGOTO＞OPテーマ THE ORAL CIGARETTES「狂乱
+                          Hey Kids!!」MusicVideo
+                        </h4>
+                        <button
+                          type="button"
+                          class="info-dot"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="hover"
+                          data-bs-placement="top"
+                          data-bs-html="true"
+                          title="Por que me gusta y cuando la escucho"
+                          data-bs-content="<strong>Me gusta:</strong> Tiene una mezcla perfecta de intensidad y nostalgia anime que me sube el animo al instante.<br><strong>Cuando la escucho:</strong> La pongo al final de la tarde, cuando hago tareas de codigo y quiero mantener el ritmo."
+                          aria-label="Informacion de esta cancion"
+                        >
+                          i
+                        </button>
+                      </div>
+                      <video width="560" height="315" controls>
+                        <source
+                          src="videos/_ノラガミARAGOTO_OPテーマ  THE ORAL CIGARETTES「狂乱 Hey Kids__」MusicVideo(360P).mp4"
+                          type="video/mp4"
+                        />
+                        Tu navegador no soporta el video.
+                      </video>
+                      <textarea rows="15" cols="50" readonly>
+Tonight, we honor the hero!
+Tonight, we honor the hero!
+
+
+塞ぐ no 面に 壊す狂乱 kids
+fusagu no omote ni kowasu kyōran kids
+
+嘘キライ？崩壊？日々を投下して
+uso kirai? hōkai? hibi wo tōka shite
+
+甘い体温の蜜 匂い立って
+amai taion no mitsu nioi tatte
+
+ソソる flavor, flavor, flavor
+sosoru flavor, flavor, flavor
+
+
+Just wanna hold your hands
+Just wanna hold your hands
+
+Just wanna hold your hands
+Just wanna hold your hands
+
+Just wanna hold your hands
+Just wanna hold your hands
+
+Hey people! let's go back to zero!
+Hey people! let's go back to zero!
+
+
+狂って hey kids!
+kurutte hey kids!
+
+閉ざした昨日を照らして 行き場のない衝動
+tozashita kinō wo terashite ikiba no nai shōdō
+
+狂って hey kids!
+kurutte hey kids!
+
+戻れない場所探して oh, oh, oh
+mororenai basho sagashite oh, oh, oh
+
+
+狂って hey kids!
+kurutte hey kids!
+
+くだらないエゴを飛ばして 意味の無い抗争
+kudaranai ego wo tobashite imi no nai kōsō
+
+狂って平気
+kurutte heiki
+
+私の名前を吐かないか
+watashi no namae wo hakanai ka
+
+
+Are you ready? I respect the hero!
+Are you ready? I respect the hero!
+
+
+鳴らさないの？滑稽なディストーション
+nara sanai no? kokkei na disutōshon
+
+今や共犯さ 天の存在もほら
+ima ya kyōhan sa ten no sonzai mo hora
+
+Who is the master who calls my favorite name!
+Who is the master who calls my favorite name!
+
+いざ forever-ever, ever
+iza forever-ever, ever
+
+
+狂って hey kids!
+kurutte hey kids!
+
+閉ざした昨日を照らして 行き場のない衝動
+tozashita kinō wo terashite ikiba no nai shōdō
+
+狂って hey kids!
+kurutte hey kids!
+
+戻れない場所探して oh, oh, oh
+mororenai basho sagashite oh, oh, oh
+
+
+狂って hey kids!
+kurutte hey kids!
+
+くだらないエゴを飛ばして 意味の無い抗争
+kudaranai ego wo tobashite imi no nai kōsō
+
+狂って平気
+kurutte heiki
+
+私の名前を吐かないか
+watashi no namae wo hakanai ka
+
+
+Just wanna hold your hands
+Just wanna hold your hands
+
+Just wanna hold your ha-ha-hands
+Just wanna hold your ha-ha-hands
+
+Just wanna hold your ha-ha-hands
+Just wanna hold your ha-ha-hands
+
+Just wanna hold your ha-ha-hands
+Just wanna hold your ha-ha-hands
+
+Just wanna hold your ha-ha-hands
+Just wanna hold your ha-ha-hands
+
+
+狂って hey kids!
+kurutte hey kids!
+
+次第に時代は変わって 終わらない焦燥
+shidai ni jidai wa kawatte owaranai shōsō
+
+狂って hey kids!
+kurutte hey kids!
+
+出会うはずだったあなたと oh, oh, oh
+deau hazu datta anata to oh, oh, oh
+
+
+狂って泣いた
+kurutte naita
+
+忘れない愛を探して 繋ぎたいずっと
+wasurenai ai wo sagashite tsunagitai zutto
+
+狂って hey kids!
+kurutte hey kids!
+
+それでも未来は儚いか
+Sore demo mirai wa hakanai ka
+
+
+Oh, oh
+Oh, oh
+
+Just wanna hold your hands
+Just wanna hold your hands
+
+I swear I respect the hero!
+I swear I respect the hero!
+                                </textarea
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="50%" class="content-card" valign="top">
+                      <div class="song-title">
+                        <h4>DJ Blyatman, Russian Village Boys - Cyka Blyat</h4>
+                        <button
+                          type="button"
+                          class="info-dot"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="hover"
+                          data-bs-placement="top"
+                          data-bs-html="true"
+                          title="Por que me gusta y cuando la escucho"
+                          data-bs-content="<strong>Me gusta:</strong> Su base fuerte me activa rapido y me ayuda a recuperar energia cuando estoy cansado.<br><strong>Cuando la escucho:</strong> Casi siempre en descansos cortos entre bloques de estudio o antes de jugar con amigos."
+                          aria-label="Informacion de esta cancion"
+                        >
+                          i
+                        </button>
+                      </div>
+                      <video width="560" height="315" controls>
+                        <source
+                          src="videos/DJ Blyatman_ Russian Village Boys - Cyka Blyat(360P).mp4"
+                          type="video/mp4"
+                        />
+                        Tu navegador no soporta el video.
+                      </video>
+                      <textarea rows="15" cols="50" readonly>
+DJ Blyatman!
+Russian Village Boys!
+I don't care where are you from (Мне похуй)
+Let's destroy your fucking home (your fucking home)
+Nobody can stop me (Я русский)
+Are you ready? (yes, I'm ready)
+Раз, два, три!
+
+Russian gang, here we go
+Every weekend make it boom
+Our bass inside your soul
+And you might get blown
+Village Boys и DJ Blyatman разрывают ваши хаты
+Да нам просто поебать, скажем вместе
+Сука блять!
+
+Блять!
+
+Сука, Cука, cука блять!
+
+Блять!
+
+Сука, сука, сука, блять
+Буду вечно повторять
+Oп давай, давай опять
+Cука, сука, сука блять
+Буду вечно повторять
+Cука, сука, сука блять
+Oп давай, давай опять
+Cука, сука, сука блять
+
+Ратататататата
+(Yeah) Pататата (I like it!)
+Ратататататата
+(Woah) Pататата (Нормально)
+
+I know what you want
+Your momma ask what's going on
+Close your eyes and follow me
+We'll be surprised
+One, two, three!
+I play hard and you'll not freeze
+From my heart I'll give you peace
+
+Russian gang, here we go
+Every weekend make it boom
+Our bass inside your soul
+And you might get blown
+Village Boys и DJ Blyatman разрывают ваши хаты
+Да нам просто поебать, скажем вместе
+Сука блять!
+
+Блять!
+
+Сука, Cука, cука блять!
+
+Блять!
+                                </textarea
+                      >
+                    </td>
+                    <td width="50%" class="content-card" valign="top">
+                      <div class="song-title">
+                        <h4>bbno$ - 1-800 (ft. ironmouse)</h4>
+                        <button
+                          type="button"
+                          class="info-dot"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="hover"
+                          data-bs-placement="top"
+                          data-bs-html="true"
+                          title="Por que me gusta y cuando la escucho"
+                          data-bs-content="<strong>Me gusta:</strong> Es divertida y creativa; cambia mi estado mental cuando necesito algo ligero y positivo.<br><strong>Cuando la escucho:</strong> Durante la noche, mientras ordeno apuntes o preparo material para el dia siguiente."
+                          aria-label="Informacion de esta cancion"
+                        >
+                          i
+                        </button>
+                      </div>
+                      <iframe
+                        src="https://www.youtube.com/embed/6Ro7NubzE9A"
+                        width="560"
+                        height="315"
+                        allowfullscreen
+                      ></iframe>
+                      <textarea rows="15" cols="50" readonly>
+Still on that
+(One, eight, zero, zero, he's so handsome, he's my hero)
+(One, eight, zero, zero)
+
+Still on that 1-800, hit me up for a good time
+My shit bumps till it push me outta line
+You can't spell my name without the dollar sign
+Rainbow money, take whatever, yes, I'm colorblind
+(One, eight, zero, zero, he's so handsome, he's my hero)
+(One, eight, zero, zero) it's that 1-800, hit my line
+(One, eight, zero, zero, he's so handsome, he's my hero)
+(One, eight, zero, zero) let me 1-800, blow your mind
+
+Eight wheels in the front, they some big toys
+2025, it's the year of the it boy
+Got a little money, yeah, got a little Bitcoin
+She, she, she, she makin' me real coy
+Never stoop too low, I don't sip Dunkin'
+Quite nice stop, I ain't talkin' no muffin
+On a first date, stay trauma dumpin'
+Blah, blah, blah, like somethin', somethin'
+One pump, two pump, three pump
+The way she workin' that shit, she left me comatose (uh)
+Three plus six is nine, this baby ain't talkin' 'bout tic-tac-toe
+Uh, she a little freak, I guess I'm an animal, E-I-E-I-O
+Two steppin' like Cotton Eye Joe (uh, bbno$)
+
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Please, please, please, please
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Please, please, please
+
+Still on that 1-800, hit me up for a good time
+My shit bumps till it push me outta line
+You can't spell my name without the dollar sign
+Rainbow money, take whatever, yes, I'm colorblind
+(One, eight, zero, zero, he's so handsome, he's my hero)
+(One, eight, zero, zero) it's that 1-800, hit my line
+(One, eight, zero, zero, he's so handsome, he's my hero)
+(One, eight, zero, zero) let me 1-800, blow your mind
+
+Dick, dick, dick, dick, dick, dick
+
+Yeah, dick real deadly, do a lil' damage
+Got, like, twenty children, Nick Cannon
+Fuck, I'm sexy, snap like sandwich
+Hit a double threesome, ride a tandem
+Got good DNA, shawty thick, got TNA
+I'm makin' moves, no POA
+Ain't bustin' quick, no ETA
+It's either she or maybe her, I cannot pick, pick, pick, pick, pick
+I got that Rolie Polie Olie, it go tick, tick, tick, tick, tick
+I'm at the Nino playin' blackjack, always hit, hit, hit, hit, hit
+If baby's broke, he's only doin' it for the bit, bit, bit, bit, bit
+
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Please, please, please, please
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Don't fuck this shit up for me
+Please, please, please
+
+Still on that 1-800, hit me up for a good time
+My shit bumps till it push me outta line
+You can't spell my name without the dollar sign
+Rainbow money, take whatever, yes, I'm colorblind
+(One, eight, zero, zero, he's so handsome, he's my hero)
+(One, eight, zero, zero) it's that 1-800, hit my line
+(One, eight, zero, zero, he's so handsome, he's my hero)
+(One, eight, zero, zero) let me 1-800, blow your mind
+                                </textarea
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="50%" class="content-card" valign="top">
+                      <div class="song-title">
+                        <h4>Timmy Trumpet & Savage - Freaks (Official Video)</h4>
+                        <button
+                          type="button"
+                          class="info-dot"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="hover"
+                          data-bs-placement="top"
+                          data-bs-html="true"
+                          title="Por que me gusta y cuando la escucho"
+                          data-bs-content="<strong>Me gusta:</strong> Tiene un ritmo explosivo que me empuja a seguir y a no perder enfoque.<br><strong>Cuando la escucho:</strong> Antes de exponer en clase o cuando necesito un impulso extra para terminar pendientes."
+                          aria-label="Informacion de esta cancion"
+                        >
+                          i
+                        </button>
+                      </div>
+                      <iframe
+                        src="https://www.youtube.com/embed/ofmzX1nI7SE"
+                        width="560"
+                        height="315"
+                        allowfullscreen
+                      ></iframe>
+                      <textarea rows="15" cols="50" readonly>
+The bass and the tweeters make the speakers go to war!
+h, the mighty trumpet brings the freaks out to the floor!
+The bass and the tweeters make the speakers go to war!
+Ah, the mighty trumpet brings the freaks out to the floor!
+
+Tell me, tell me, where the freaks at!
+Tell me, tell me, where the freaks at, freaks at, freaks at, freaks at, freaks at, fre-fre-fre-fre-fre-fre-fre-fre-fre-fre-fre
+
+Tell me where the freaks at!!
+
+We get that bass thumpin', people jumpin' all over the world
+We got them speakers pumpin', Timmy Trumpet for the woman with curves
+Got that freak flow, freak show
+Welcome to the circus
+Let the leaders lead, preachers preach
+Welcome to the service
+
+Close the curtains on 'em if they're actin' like they never heard us
+See we do this for a purpose just to keep that fire burnin'
+And we don't need no water let that mother-mother-burn
+Timmy play your trumpet let the people go berserk
+
+The bass and the tweeters make the speakers go to war!
+Ah, the mighty trumpet brings the freaks out to the floor!
+The bass and the tweeters make the speakers go to war!
+Ah, the mighty trumpet brings the freaks out to the floor!
+
+Tell me, tell me, where the freaks at!
+Tell me, tell me, where the freaks at, freaks at, freaks at, freaks at, freaks at, fre-fre-fre-fre-fre-fre-fre-fre-fre-fre-fre
+
+Tell me where the freaks at!
+
+The bass and the tweeters make the speakers go to war!
+Ah, the mighty trumpet brings the freaks out to the floor!
+The bass and the tweeters make the speakers go to war!
+Ah, the mighty trumpet brings the freaks out to the floor!
+                                </textarea
+                      >
+                    </td>
+                    <td width="50%" class="content-card" valign="top">
+                      <div class="song-title">
+                        <h4>Coolest ~CUSTOMI Z~</h4>
+                        <button
+                          type="button"
+                          class="info-dot"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="hover"
+                          data-bs-placement="top"
+                          data-bs-html="true"
+                          title="Por que me gusta y cuando la escucho"
+                          data-bs-content="<strong>Me gusta:</strong> Su estilo elegante me recuerda mantener calma y actitud en momentos de presion.<br><strong>Cuando la escucho:</strong> En la madrugada, cuando repaso conceptos complejos y quiero concentracion sin aburrirme."
+                          aria-label="Informacion de esta cancion"
+                        >
+                          i
+                        </button>
+                      </div>
+                      <video width="560" height="315" controls>
+                        <source
+                          src="videos/Coolest _CUSTOMI Z_ •Sakamoto Desu ga_ opening_ sub español•(360P).mp4"
+                          type="video/mp4"
+                        />
+                        Tu navegador no soporta el video.
+                      </video>
+                      <textarea rows="15" cols="50" readonly>
+Coolest
+スタンドアップ 顔上げな 視界奪う憂鬱を
+stand up kao age na shikai ubau yuuutsu o
+
+優雅に鯖いて ほら breakfast
+yuuga ni sabaite hora breakfast
+
+ナイフ＆フォークで たいらげる all right
+naifu & fooku de tairageru all right
+
+いざなえ graceful な life
+izanae graceful na life
+
+無類、無粋、野暮は no thanx
+murui, busui, yabo wa no thanx
+
+ハートは激圧
+haato wa gekiatsu
+
+振る舞いは cool, cooler, coolest!
+furumai wa cool, cooler, coolest!
+
+まげんな get up
+magen na get up
+
+半端、ナンパ、寝こぜは no
+hanpa, nanpa, nekoze wa no
+
+
+激流にさえ立ち向かえ
+gekiryuu ni sae tachimukae
+
+流れ逆らえ 涼しげなフェイスで
+nagare sakarae suzushige na feisu de
+
+苦難は日々を飾る花束
+kunan wa hibi o kazaru hanataba
+
+
+踊れ一人でも
+odore hitori demo
+
+ステージの上 目覚ましいワクオーディエンスで
+suteeji no ue makuagari waku oodiensu de
+
+さあ it’s showtime! 見開いて空すな目を
+saa it’s showtime!　mihiraite sorasu na me o
+
+眩しく孤高のニューワールド
+mabushiku kodaka no nyuu waarudo
+
+
+oh yeah yeah ブレるな hey boys
+oh yeah yeah bureru na hey boys
+
+溢れ出す想い 自ら貫けよ
+afuredasu omoi onore tsuranuke yo
+
+スペシャルをプレゼント special
+supesharu o purezento special
+
+行こうぜ go! ありのままで
+ikou ze go! arinomama de
+
+
+break out! 嵐起こせ
+break out! arashi okose
+
+思い詰めなすお前連れてく heaven へ
+omotenasu omae tsureteku heaven e
+
+wake up! 弱き者よ
+wake up! yowakimono yo
+
+はみ出せ hey! 空気なんて読むなよ
+hamidase hey! kuuki nante yomu na yo
+
+
+折り破れお前のスタイルを押し通せ
+ori yabure omae no sutairu o oshitoose
+
+ah virtuous knight
+ah virtuous knight
+
+共に行こう hey girl
+tomoni ikou hey girl
+
+華麗にステップ 茨の road
+karei ni suteppu ibara no road
+
+
+work out 吹け 涙 もう泣き言は stop
+work out fuke namida mou nakigoto wa stop
+
+信じろ friends 差し伸べた手を掴め
+shinjiro friends sashinobeta te o tsukame
+
+そのままペアでリバースターン
+sonomama pea de ribaasu taan
+
+ダンスフロアは戦場
+dansu furoa wa senjou
+
+
+階久礼 非愛の弾丸
+kaikugure hiai no dangan
+
+お見舞いしろ にぃディストラクション
+omimai shiro nii disutorakushon
+
+足跡で綴ろう 上場志刻め 喜びの歌
+ashiato de tsudzurou jojoushi kizame yorokobi no uta
+
+
+多くは語るな 行動で語れ
+ooku wa kataru na koudou de katare
+
+全て受け止め導こう
+subete uketome michibikou
+
+春風のように君のもとへ 時にはクールに去ろう
+harukaze no you ni kimi no moto e tokiniwa kuuru ni sarou
+
+see you again!
+see you again!
+
+逆境を塗り替えるよう 彩れ迫る危機を
+gyakkyou o nurikaeru you irodore semaru kiki o
+
+
+yeah yeah ビビるな hey guys
+yeah yeah bibiru na hey guys
+
+闇夜の海に飛び込めバタフライ
+yamiyo no umi ni tobikome batafurai
+
+blast out! 追い求めろ
+blast out!　oimotomero
+
+新たな大陸目指せ
+arata na tairiku mezase
+
+
+上等さ doggy paddle
+joutou sa doggy paddle
+
+がむしゃらでいい 荒波泳ごうぜ
+gamushara de ii aranami oyogou ze
+
+baby はぐれんなよ
+baby hagurenna yo
+
+繋いだ手はセーラーズノットさ
+tsunaida te wa seeraazu notto sa
+
+
+咲き乱れろ 大輪の花よ
+sakimidarero tairin no hana yo
+
+beauteous flower
+beauteous flower
+
+風に乗り飛び越えよう
+kaze ni nori tobikoeyou
+
+行く手阻む巨大な wall
+yuku te habamu kyodai na wall
+
+
+break out! 嵐起こせ
+break out! arashi okose
+
+花びら舞う光の中
+hanabira mau hikari no naka
+
+届かない それでもこの手を伸ばす
+todokanai soredemo kono te o nobasu
+
+あの月へ
+ano tsuki e
+
+
+yeah yeah ブレるな hey boys
+yeah yeah bureru na hey boys
+
+溢れ出す想い 自ら貫けよ
+afuredasu omoi onore tsuranuke yo
+
+wake up! 弱き者よ
+wake up! yowakimono yo
+
+はみ出せ hey! 空気なんて読むなよ
+hamidase hey! kuuki nante yomu na yo
+
+
+折り破れお前のスタイルを押し通せ
+ori yabure omae no sutairu o oshitoose
+
+ah virtuous knight
+ah virtuous knight
+
+舞うように切り開く winding road
+mau you ni kirihiraku winding road
+
+鎧脱ぎ捨て その翼広げてみな
+yoroi nugisute sono tsubasa hirogetemina
+
+共に行こう hey girl
+tomoni ikou hey girl
+
+華麗にステップ 茨の road
+karei ni suteppu ibara no road
+                                </textarea
+                      >
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <h2 id="juegos" class="section-heading">Mis Juegos Favoritos</h2>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table width="100%" border="0">
+                  <tr>
+                    <th>
+                      <img
+                        src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/550/capsule_616x353.jpg?t=1772742214"
+                        alt="Left 4 dead 2"
+                        width="600"
+                        height="280"
+                      />
+                    </th>
+                    <th>
+                      <img
+                        src="https://static.wikia.nocookie.net/theassassinscreed/images/c/cf/Assassins-Creed-Logo.jpg/revision/latest?cb=20180614203155&path-prefix=es"
+                        alt="Assassins-Creed"
+                        width="600"
+                        height="280"
+                      />
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>
+                      <img
+                        src="https://i0.wp.com/www.fontshut.com/wp-content/uploads/2023/01/Genshin-Impact-Logo_PNG5.png?resize=1200%2C787&ssl=1"
+                        alt="Genshin-Impact"
+                        width="600"
+                        height="280"
+                      />
+                    </th>
+                    <th>
+                      <img
+                        src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/1ea445e044a2d5b09cfa8291350b63ebed6e5741/header.jpg?t=1765552338"
+                        alt="R.E.P.O"
+                        width="600"
+                        height="280"
+                      />
+                    </th>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="content-card text-center">
+                <h2 id="mision-vision" class="section-heading">Mision-vision</h2>
+                <table width="100%">
+                  <tr>
+                    <td width="50%" valign="top" class="mv-col">
+                      <h3>MISION:</h3>
+                      <img
+                        src="images/Mision.png"
+                        alt="Imagen de Mision"
+                        style="width: 100%; max-width: 520px; height: auto"
+                      />
+                      <p>
+                        Esta imagen representa el compromiso y la dedicación del
+                        presente. Mi misión actual es consolidar los conocimientos
+                        fundamentales de la Ingeniería de Sistemas a través de la
+                        disciplina diaria. Me muestra en mi entorno de trabajo,
+                        donde el código, la teoría de sistemas y la resolución de
+                        problemas técnicos son los protagonistas.
+                      </p>
+                      <p>
+                        El Objetivo: Obtener mi título de Licenciatura, no solo
+                        como un documento, sino como el símbolo de que he dominado
+                        las herramientas necesarias para transformar la realidad
+                        mediante la tecnología.
+                      </p>
+                      <p>
+                        La Actitud: Concentración absoluta, estudio constante y la
+                        construcción paso a paso de mi futuro profesional.
+                      </p>
+                    </td>
+                    <td width="50%" valign="top" class="mv-col">
+                      <h3>VISION:</h3>
+                      <img
+                        src="images/Vision.png"
+                        alt="Imagen de Vision"
+                        style="width: 100%; max-width: 520px; height: auto"
+                      />
+                      <p>
+                        Esta imagen proyecta mi meta a largo plazo y el impacto que
+                        aspiro generar en la industria. Mi visión es liderar equipos
+                        multidisciplinarios de alto rendimiento en el desarrollo de
+                        arquitecturas de IA que resuelvan desafíos globales.
+                      </p>
+                      <p>
+                        El Objetivo: Ser un referente en el área de Inteligencia
+                        Artificial, pasando de la ejecución individual a la
+                        dirección estratégica. Me veo compartiendo conocimiento,
+                        diseñando modelos complejos (Deep Learning) y colaborando en
+                        un entorno de oficina moderno y dinámico.
+                      </p>
+                      <p>
+                        La Actitud: Liderazgo inspirador, colaboración en equipo y
+                        una mirada siempre puesta en la vanguardia tecnológica para
+                        crear un futuro más inteligente.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table width="100%">
+                  <tr>
+                    <h2 id="tareas" class="section-heading text-center">Tareas Destacadas</h2>
+                    <td
+                      width="33%"
+                      class="content-card text-center"
+                    >
+                      <img src="images/Redes.jpeg" alt="Imagen 1" width="200" />
+                      <p>
+                        Este es un sistema de control y monitoreo de redes que
+                        hice junto con mi grupo para la feria II-2025
+                      </p>
+                    </td>
+                    <td
+                      width="33%"
+                      class="content-card text-center"
+                    >
+                      <img
+                        src="images/Carito.jpeg"
+                        alt="Imagen 2"
+                        width="200"
+                      />
+                      <p>
+                        Este es un proyecto que se hicimos con mi grupo para la
+                        feria,es un auto a control remoto con un ESP-32
+                      </p>
+                    </td>
+                    <td
+                      width="33%"
+                      class="content-card text-center"
+                    >
+                      <img src="images/Lab.jpeg" alt="Imagen 3" width="200" />
+                      <p>
+                        Este es un sistema de gestión y controlde laboratorios
+                        que hicimos junto a mi grupo en el I-2025
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </td>
+        </tr>
+      </table>
+    </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      (() => {
+        const nav = document.getElementById("mainNavbar");
+        const topZone = document.getElementById("top-hover-zone");
+        let hideTimer;
+
+        const showNav = () => {
+          nav.classList.remove("nav-hidden");
+          clearTimeout(hideTimer);
+        };
+
+        const hideNavLater = () => {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(() => {
+            if (!nav.matches(":hover")) {
+              nav.classList.add("nav-hidden");
+            }
+          }, 1000);
+        };
+
+        showNav();
+        hideNavLater();
+
+        nav.addEventListener("mouseenter", showNav);
+        nav.addEventListener("mouseleave", hideNavLater);
+        topZone.addEventListener("mouseenter", showNav);
+        topZone.addEventListener("mouseleave", hideNavLater);
+
+        document.addEventListener("mousemove", (event) => {
+          if (event.clientY <= 70) {
+            showNav();
+            hideNavLater();
+          }
+        });
+
+        const popoverTriggerList = document.querySelectorAll(
+          '[data-bs-toggle="popover"]'
+        );
+        popoverTriggerList.forEach((el) => {
+          new bootstrap.Popover(el, {
+            trigger: "hover",
+            customClass: "music-popover",
+          });
+        });
+      })();
+    </script>
+    <footer id="redes">
+      <div class="text-center">
+        <h3>Mis Redes Sociales</h3>
+        <div class="links">
+          <a href="https://x.com/Joseph_Nnk16" target="_blank">Twitter</a> |
+          <a href="https://www.youtube.com/@Joseph_FamX" target="_blank"
+            >YouTube</a
+          >
+          |
+          <a href="https://github.com/JosephNnk" target="_blank">GitHub</a>
+        </div>
+        <br />
+      </div>
+    </footer>
+  </body>
+</html>
