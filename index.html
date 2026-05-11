@@ -182,6 +182,8 @@
       img,
       video,
       iframe {
+        max-width: 100%;
+        height: auto;
         border-radius: 12px;
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
       }
@@ -207,6 +209,80 @@
         background: rgba(15, 23, 42, 0.85);
         color: #e5e7eb;
         font-size: 0.9rem;
+      }
+
+      @media (max-width: 992px) {
+        body {
+          padding: 88px 0 40px;
+        }
+
+        table[width="80%"] {
+          width: 94%;
+        }
+
+        .carousel-cover {
+          height: 320px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 84px 0 32px;
+        }
+
+        table,
+        tbody,
+        tr,
+        td,
+        th {
+          display: block;
+          width: 100% !important;
+        }
+
+        td,
+        th {
+          padding: 12px 10px;
+        }
+
+        .content-card {
+          margin-bottom: 16px;
+        }
+
+        .carousel-cover {
+          height: 240px;
+        }
+
+        .song-title {
+          flex-wrap: wrap;
+        }
+
+        textarea {
+          max-width: 100%;
+          font-size: 0.85rem;
+        }
+
+        .floating-nav {
+          left: 8px;
+          right: 8px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.6rem;
+        }
+
+        h2 {
+          font-size: 1.25rem;
+        }
+
+        h3 {
+          font-size: 1.1rem;
+        }
+
+        .carousel-cover {
+          height: 200px;
+        }
       }
 
       ul {
@@ -577,7 +653,7 @@ My blood is pumping, coming to get you, don't take it from me
                       </div>
                       <video width="560" height="315" controls>
                         <source
-                          src="videos/_ノラガミARAGOTO_OPテーマ  THE ORAL CIGARETTES「狂乱 Hey Kids__」MusicVideo(360P).mp4"
+                          src="videos/_%E3%83%8E%E3%83%A9%E3%82%AC%E3%83%9FARAGOTO_OP%E3%83%86%E3%83%BC%E3%83%9E%20%20THE%20ORAL%20CIGARETTES%E3%80%8C%E7%8B%82%E4%B9%B1%20Hey%20Kids__%E3%80%8DMusicVideo(360P).mp4"
                           type="video/mp4"
                         />
                         Tu navegador no soporta el video.
